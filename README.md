@@ -47,6 +47,14 @@ The included Render configuration is optional only. Free cloud providers can sle
 
 SQLite is suitable for a demo and low-volume pilot. For multi-agent production use, replace it with Postgres and add authenticated admin access before handling customer records.
 
+## Accuracy and review controls
+
+Voxera uses a grounded-or-escalate policy. It searches only approved support articles, requires a 0.65 confidence threshold, shows the approved article title and version, and escalates when no reliable match exists. It does not invent account, payment, order, or policy details.
+
+New articles are marked `pending_review` and cannot answer customers. A reviewer can approve or reject them from the Admin panel. Each edit creates an immutable article version with a change note, reviewer timestamp, status, and optional Telugu/Hindi answer variants. Only the approved version is searchable.
+
+The seeded guides include approved English, Telugu, and Hindi responses. The text field remains available as a fallback because browser speech recognition quality varies by browser.
+
 ## Design decisions
 
 The browser uses the Web Speech API to keep the first deployment free. Speech recognition quality and availability vary by browser, so the text input remains a dependable fallback. The backend's local retrieval engine returns approved article snippets with confidence and a clear handoff path instead of fabricating answers.
