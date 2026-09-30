@@ -32,6 +32,12 @@ uvicorn app:app --host 127.0.0.1 --port 8765
 
 Open http://127.0.0.1:8765. Microphone access works on localhost. Use Chrome or Edge for the most reliable browser speech recognition.
 
+## Live public deployment
+
+Public customer app: https://saas-voice-support-bot.onrender.com
+
+The live service uses Render's free web-service plan. It may sleep after inactivity and wake on the next request. The approved guides are seeded automatically at startup; free-instance local database changes such as feedback, handoffs, and article edits are not guaranteed to survive a full service restart because no persistent disk is attached.
+
 ## Optional free cloud deployment
 
 The included Render configuration is optional only. Free cloud providers can sleep, impose quotas, change policy, or require future verification. Use local mode when permanent free operation is a strict requirement.
