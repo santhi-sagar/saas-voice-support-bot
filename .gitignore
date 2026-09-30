@@ -3,4 +3,7 @@ __pycache__/
 .venv/
 .env
 *.db
+access_code.txt
+**/access_code.txt
+.env
 .DS_Store
