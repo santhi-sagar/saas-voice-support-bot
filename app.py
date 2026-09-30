@@ -96,6 +96,13 @@ class ArticleRequest(BaseModel):
     content: str = Field(min_length=10, max_length=4000)
     keywords: list[str] = Field(default_factory=list)
     steps: list[str] = Field(default_factory=list)
+    translations: dict[str, dict[str, Any]] = Field(default_factory=dict)
+    change_note: str = Field(default="", max_length=500)
+
+
+class ReviewRequest(BaseModel):
+    decision: str = Field(pattern="^(approve|reject)$")
+    note: str = Field(default="", max_length=1000)
 
 
 def db() -> sqlite3.Connection:
@@ -113,28 +120,48 @@ def init_db() -> None:
     with db() as con:
         con.executescript(
             """
-            CREATE TABLE IF NOT EXISTS articles (id TEXT PRIMARY KEY, title TEXT NOT NULL, category TEXT NOT NULL, keywords TEXT NOT NULL, content TEXT NOT NULL, steps TEXT NOT NULL, created_at TEXT NOT NULL);
+            CREATE TABLE IF NOT EXISTS articles (id TEXT PRIMARY KEY, title TEXT NOT NULL, category TEXT NOT NULL, keywords TEXT NOT NULL, content TEXT NOT NULL, steps TEXT NOT NULL, created_at TEXT NOT NULL, translations TEXT NOT NULL DEFAULT '{}', version INTEGER NOT NULL DEFAULT 1, status TEXT NOT NULL DEFAULT 'approved', change_note TEXT NOT NULL DEFAULT '', reviewed_at TEXT);
+            CREATE TABLE IF NOT EXISTS article_versions (id TEXT PRIMARY KEY, article_id TEXT NOT NULL, version INTEGER NOT NULL, title TEXT NOT NULL, category TEXT NOT NULL, keywords TEXT NOT NULL, content TEXT NOT NULL, steps TEXT NOT NULL, translations TEXT NOT NULL, status TEXT NOT NULL, change_note TEXT NOT NULL, created_at TEXT NOT NULL, reviewed_at TEXT);
             CREATE TABLE IF NOT EXISTS conversations (id TEXT PRIMARY KEY, message TEXT NOT NULL, response TEXT NOT NULL, language TEXT NOT NULL, confidence REAL NOT NULL, source TEXT NOT NULL, created_at TEXT NOT NULL);
             CREATE TABLE IF NOT EXISTS feedback (id TEXT PRIMARY KEY, conversation_id TEXT NOT NULL, rating INTEGER NOT NULL, comment TEXT, created_at TEXT NOT NULL);
             CREATE TABLE IF NOT EXISTS handoffs (id TEXT PRIMARY KEY, conversation_id TEXT, name TEXT NOT NULL, email TEXT NOT NULL, issue TEXT NOT NULL, language TEXT NOT NULL, status TEXT NOT NULL, created_at TEXT NOT NULL);
             """
         )
+        existing_columns = {row[1] for row in con.execute("PRAGMA table_info(articles)").fetchall()}
+        migrations = {
+            "translations": "TEXT NOT NULL DEFAULT '{}'",
+            "version": "INTEGER NOT NULL DEFAULT 1",
+            "status": "TEXT NOT NULL DEFAULT 'approved'",
+            "change_note": "TEXT NOT NULL DEFAULT ''",
+            "reviewed_at": "TEXT",
+        }
+        for column, definition in migrations.items():
+            if column not in existing_columns:
+                con.execute(f"ALTER TABLE articles ADD COLUMN {column} {definition}")
         count = con.execute("SELECT COUNT(*) AS n FROM articles").fetchone()["n"]
         if count == 0 and KNOWLEDGE_PATH.exists():
             seed = json.loads(KNOWLEDGE_PATH.read_text(encoding="utf-8"))
             for article in seed:
+                article_id = str(uuid.uuid4())
+                created = now()
+                translations = article.get("translations", {})
                 con.execute(
-                    "INSERT INTO articles VALUES (?, ?, ?, ?, ?, ?, ?)",
-                    (
-                        str(uuid.uuid4()),
-                        article["title"],
-                        article["category"],
-                        json.dumps(article["keywords"]),
-                        article["content"],
-                        json.dumps(article.get("steps", [])),
-                        now(),
-                    ),
+                    "INSERT INTO articles (id,title,category,keywords,content,steps,created_at,translations,version,status,change_note,reviewed_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                    (article_id, article["title"], article["category"], json.dumps(article["keywords"]), article["content"], json.dumps(article.get("steps", [])), created, json.dumps(translations, ensure_ascii=False), 1, "approved", "Seeded approved support guide", created),
                 )
+                con.execute(
+                    "INSERT INTO article_versions (id,article_id,version,title,category,keywords,content,steps,translations,status,change_note,created_at,reviewed_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                    (str(uuid.uuid4()), article_id, 1, article["title"], article["category"], json.dumps(article["keywords"]), article["content"], json.dumps(article.get("steps", [])), json.dumps(translations, ensure_ascii=False), "approved", "Seeded approved support guide", created, created),
+                )
+        if KNOWLEDGE_PATH.exists():
+            for article in json.loads(KNOWLEDGE_PATH.read_text(encoding="utf-8")):
+                current = con.execute("SELECT * FROM articles WHERE title = ?", (article["title"],)).fetchone()
+                if current and (not current["translations"] or current["translations"] == "{}"):
+                    translations = json.dumps(article.get("translations", {}), ensure_ascii=False)
+                    con.execute("UPDATE articles SET translations=? WHERE id=?", (translations, current["id"]))
+                    version_exists = con.execute("SELECT COUNT(*) AS n FROM article_versions WHERE article_id=?", (current["id"],)).fetchone()["n"]
+                    if not version_exists:
+                        con.execute("INSERT INTO article_versions (id,article_id,version,title,category,keywords,content,steps,translations,status,change_note,created_at,reviewed_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", (str(uuid.uuid4()), current["id"], current["version"], current["title"], current["category"], current["keywords"], current["content"], current["steps"], translations, current["status"], "Backfilled approved translations", current["created_at"], current["reviewed_at"]))
 
 
 def mask_pii(text: str) -> str:
@@ -158,7 +185,7 @@ def retrieve(message: str) -> tuple[sqlite3.Row | None, float]:
     if not query:
         return None, 0.0
     with db() as con:
-        rows = con.execute("SELECT * FROM articles").fetchall()
+        rows = con.execute("SELECT * FROM articles WHERE status = 'approved'").fetchall()
     best, best_score = None, 0.0
     for row in rows:
         haystack = " ".join([row["title"], row["category"], row["content"], row["keywords"]])
@@ -175,18 +202,24 @@ def retrieve(message: str) -> tuple[sqlite3.Row | None, float]:
     return best, round(best_score, 2)
 
 
+ANSWER_THRESHOLD = 0.65
+
+
 def response_for(message: str, language: str) -> tuple[str, float, str, dict[str, Any] | None]:
     language = language if language in SUPPORTED_LANGUAGES else "en-IN"
     article, confidence = retrieve(message)
-    if article and confidence >= 0.28:
+    if article and confidence >= ANSWER_THRESHOLD:
+        translations = json.loads(article["translations"] or "{}")
+        localized = translations.get(language, {})
         intro = {
             "en-IN": "Here is what I found:",
             "te-IN": "ఇది నాకు దొరికిన సమాచారం:",
             "hi-IN": "मुझे यह जानकारी मिली:",
         }[language]
-        answer = f"{intro} {article['content']}"
-        return answer, confidence, "knowledge_base", {"title": article["title"], "category": article["category"], "steps": json.loads(article["steps"])}
-    return TRANSLATIONS[language]["fallback"], confidence, "safe_fallback", None
+        answer = f"{intro} {localized.get('content', article['content'])}"
+        steps = localized.get("steps", json.loads(article["steps"]))
+        return answer, confidence, "knowledge_base", {"title": article["title"], "category": article["category"], "steps": steps, "version": article["version"], "reviewed_at": article["reviewed_at"]}
+    return TRANSLATIONS[language]["fallback"], confidence, "safe_fallback", {"threshold": ANSWER_THRESHOLD, "reason": "No approved article met the confidence threshold"}
 
 
 @app.on_event("startup")
@@ -199,7 +232,9 @@ def startup() -> None:
 def health() -> dict[str, Any]:
     with db() as con:
         articles = con.execute("SELECT COUNT(*) AS n FROM articles").fetchone()["n"]
-    return {"status": "ok", "service": "voxera", "articles": articles, "languages": SUPPORTED_LANGUAGES}
+    with db() as con:
+        pending = con.execute("SELECT COUNT(*) AS n FROM articles WHERE status = 'pending_review'").fetchone()["n"]
+    return {"status": "ok", "service": "voxera", "articles": articles, "pending_review": pending, "answer_threshold": ANSWER_THRESHOLD, "languages": SUPPORTED_LANGUAGES}
 
 
 @app.post("/api/auth/login")
@@ -278,7 +313,8 @@ def articles(request: Request, q: str = "") -> list[dict[str, Any]]:
         item = dict(row)
         item["keywords"] = json.loads(item["keywords"])
         item["steps"] = json.loads(item["steps"])
-        if not q or q.lower() in json.dumps(item).lower():
+        item["translations"] = json.loads(item.get("translations") or "{}")
+        if not q or q.lower() in json.dumps(item, ensure_ascii=False).lower():
             result.append(item)
     return result
 
@@ -286,18 +322,67 @@ def articles(request: Request, q: str = "") -> list[dict[str, Any]]:
 @app.post("/api/articles")
 def create_article(payload: ArticleRequest, request: Request) -> dict[str, Any]:
     require_access(request)
-    item = (
-        str(uuid.uuid4()),
-        payload.title,
-        payload.category,
-        json.dumps(payload.keywords),
-        payload.content,
-        json.dumps(payload.steps),
-        now(),
-    )
+    article_id, created = str(uuid.uuid4()), now()
+    translations = json.dumps(payload.translations, ensure_ascii=False)
     with db() as con:
-        con.execute("INSERT INTO articles VALUES (?, ?, ?, ?, ?, ?, ?)", item)
-    return {"status": "created", "id": item[0]}
+        con.execute(
+            "INSERT INTO articles (id,title,category,keywords,content,steps,created_at,translations,version,status,change_note,reviewed_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            (article_id, payload.title, payload.category, json.dumps(payload.keywords), payload.content, json.dumps(payload.steps), created, translations, 1, "pending_review", payload.change_note, None),
+        )
+        con.execute(
+            "INSERT INTO article_versions (id,article_id,version,title,category,keywords,content,steps,translations,status,change_note,created_at,reviewed_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            (str(uuid.uuid4()), article_id, 1, payload.title, payload.category, json.dumps(payload.keywords), payload.content, json.dumps(payload.steps), translations, "pending_review", payload.change_note, created, None),
+        )
+    return {"status": "pending_review", "id": article_id, "version": 1}
+
+
+@app.put("/api/articles/{article_id}")
+def update_article(article_id: str, payload: ArticleRequest, request: Request) -> dict[str, Any]:
+    require_access(request)
+    created = now()
+    translations = json.dumps(payload.translations, ensure_ascii=False)
+    with db() as con:
+        current = con.execute("SELECT * FROM articles WHERE id = ?", (article_id,)).fetchone()
+        if not current:
+            raise HTTPException(status_code=404, detail="Article not found")
+        version = int(current["version"]) + 1
+        con.execute(
+            "UPDATE articles SET title=?, category=?, keywords=?, content=?, steps=?, translations=?, version=?, status='pending_review', change_note=?, reviewed_at=NULL WHERE id=?",
+            (payload.title, payload.category, json.dumps(payload.keywords), payload.content, json.dumps(payload.steps), translations, version, payload.change_note, article_id),
+        )
+        con.execute(
+            "INSERT INTO article_versions (id,article_id,version,title,category,keywords,content,steps,translations,status,change_note,created_at,reviewed_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            (str(uuid.uuid4()), article_id, version, payload.title, payload.category, json.dumps(payload.keywords), payload.content, json.dumps(payload.steps), translations, "pending_review", payload.change_note, created, None),
+        )
+    return {"status": "pending_review", "id": article_id, "version": version}
+
+
+@app.post("/api/articles/{article_id}/review")
+def review_article(article_id: str, payload: ReviewRequest, request: Request) -> dict[str, Any]:
+    require_access(request)
+    reviewed = now()
+    with db() as con:
+        current = con.execute("SELECT * FROM articles WHERE id = ?", (article_id,)).fetchone()
+        if not current:
+            raise HTTPException(status_code=404, detail="Article not found")
+        status = "approved" if payload.decision == "approve" else "rejected"
+        con.execute("UPDATE articles SET status=?, reviewed_at=? WHERE id=?", (status, reviewed, article_id))
+        con.execute("UPDATE article_versions SET status=?, reviewed_at=? WHERE article_id=? AND version=?", (status, reviewed, article_id, current["version"]))
+    return {"status": status, "id": article_id, "version": current["version"], "note": payload.note}
+
+
+@app.get("/api/articles/{article_id}/versions")
+def article_versions(article_id: str, request: Request) -> list[dict[str, Any]]:
+    require_access(request)
+    with db() as con:
+        rows = con.execute("SELECT * FROM article_versions WHERE article_id=? ORDER BY version DESC", (article_id,)).fetchall()
+    result = []
+    for row in rows:
+        item = dict(row)
+        for field in ("keywords", "steps", "translations"):
+            item[field] = json.loads(item[field])
+        result.append(item)
+    return result
 
 
 @app.get("/api/metrics")
@@ -308,7 +393,9 @@ def metrics(request: Request) -> dict[str, Any]:
         handoffs = con.execute("SELECT COUNT(*) AS n FROM handoffs").fetchone()["n"]
         avg = con.execute("SELECT AVG(rating) AS value FROM feedback").fetchone()["value"]
         articles_count = con.execute("SELECT COUNT(*) AS n FROM articles").fetchone()["n"]
-    return {"conversations": conversations, "handoffs": handoffs, "average_rating": round(avg, 2) if avg else None, "articles": articles_count}
+        pending = con.execute("SELECT COUNT(*) AS n FROM articles WHERE status = 'pending_review'").fetchone()["n"]
+        versions = con.execute("SELECT COUNT(*) AS n FROM article_versions").fetchone()["n"]
+    return {"conversations": conversations, "handoffs": handoffs, "average_rating": round(avg, 2) if avg else None, "articles": articles_count, "pending_review": pending, "versions": versions, "answer_threshold": ANSWER_THRESHOLD}
 
 
 app.mount("/static", StaticFiles(directory=str(BASE / "static")), name="static")
