@@ -14,19 +14,27 @@ Voxera is a production-minded, free-to-run browser voice assistant for SaaS cust
 - Optional LLM adapter can be added later without changing the frontend contract
 - Docker and Render deployment configuration
 
-## Run locally
+## Permanent-free local run (recommended)
 
-Requires Python 3.10+.
+For a no-expiry, no-account, no-reverification deployment, run Voxera on your own Windows computer. Double-click `START_VOXERA.bat`. The first run performs a one-time local setup; later runs need no sign-in or cloud verification. It opens at http://127.0.0.1:8765.
+
+See [LOCAL_RUN.md](LOCAL_RUN.md) for automatic startup, privacy, and availability details.
+
+Manual setup is also available with Python 3.10+:
 
 ```bash
 python -m venv .venv
-# Windows: .venv\Scripts\activate
+# Windows: .venv\\Scripts\\activate
 # macOS/Linux: source .venv/bin/activate
 pip install -r requirements.txt
-uvicorn app:app --reload --port 8000
+uvicorn app:app --host 127.0.0.1 --port 8765
 ```
 
-Open http://localhost:8000. Microphone access works on localhost and HTTPS deployments. Use Chrome or Edge for the most reliable browser speech recognition.
+Open http://127.0.0.1:8765. Microphone access works on localhost. Use Chrome or Edge for the most reliable browser speech recognition.
+
+## Optional free cloud deployment
+
+The included Render configuration is optional only. Free cloud providers can sleep, impose quotas, change policy, or require future verification. Use local mode when permanent free operation is a strict requirement.
 
 ## Deploy on Render free tier
 
