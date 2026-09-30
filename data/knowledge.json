@@ -1,0 +1,37 @@
+[
+  {
+    "title": "Resetting your password",
+    "category": "Account",
+    "keywords": ["password", "reset", "forgot", "login", "sign in"],
+    "content": "To reset your password, open the sign-in page, select Forgot password, enter your work email, and follow the secure link. The link expires after 30 minutes. If it does not arrive, check spam and confirm that you used the email linked to your workspace.",
+    "steps": ["Open the sign-in page", "Choose Forgot password", "Check your email and follow the secure link", "Create a new password"]
+  },
+  {
+    "title": "Invite a teammate",
+    "category": "Workspace",
+    "keywords": ["invite", "teammate", "member", "user", "workspace"],
+    "content": "Workspace admins can invite teammates from Settings, then Members, and select Invite member. Enter the teammate's work email, choose a role, and send the invitation. Pending invitations can be cancelled from the same screen.",
+    "steps": ["Open Settings", "Select Members", "Choose Invite member", "Enter an email and role"]
+  },
+  {
+    "title": "Billing and plan changes",
+    "category": "Billing",
+    "keywords": ["billing", "payment", "plan", "upgrade", "downgrade", "invoice", "subscription"],
+    "content": "Billing admins can view invoices and change plans from Settings, then Billing. Plan changes are shown before confirmation. Downgrades take effect at the next renewal, while upgrades are applied immediately and may be prorated.",
+    "steps": ["Open Settings", "Select Billing", "Review the current plan", "Choose a plan and confirm"]
+  },
+  {
+    "title": "Exporting workspace data",
+    "category": "Data",
+    "keywords": ["export", "download", "csv", "data", "workspace"],
+    "content": "Workspace admins can export workspace data from Settings, then Data export. Select the date range and format, then request the export. A secure download link is sent when the export is ready.",
+    "steps": ["Open Settings", "Select Data export", "Choose a date range and format", "Request the export"]
+  },
+  {
+    "title": "Contact a human support specialist",
+    "category": "Support",
+    "keywords": ["human", "agent", "person", "support", "contact", "help"],
+    "content": "If the assistant cannot resolve your issue, you can request a human support specialist. Share your email and a short description. The support team reviews requests during business hours and replies by email.",
+    "steps": ["Select Talk to a human", "Enter your email", "Describe the issue", "Submit the request"]
+  }
+]
