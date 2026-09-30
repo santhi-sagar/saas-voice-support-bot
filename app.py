@@ -1,7 +1,10 @@
 from __future__ import annotations
 
+import hashlib
+import hmac
 import json
 import os
+import secrets
 import re
 import sqlite3
 import uuid
@@ -9,7 +12,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
@@ -19,8 +22,32 @@ BASE = Path(__file__).parent
 DATA = BASE / "data"
 DB_PATH = Path(os.getenv("VOXERA_DB", str(DATA / "voxera.db")))
 KNOWLEDGE_PATH = DATA / "knowledge.json"
+ACCESS_CODE_PATH = DATA / "access_code.txt"
 
 app = FastAPI(title="Voxera Voice Support API", version="1.0.0")
+
+
+def access_code() -> str:
+    configured = os.getenv("VOXERA_ACCESS_CODE", "").strip()
+    if configured:
+        return configured
+    DATA.mkdir(exist_ok=True)
+    if ACCESS_CODE_PATH.exists():
+        return ACCESS_CODE_PATH.read_text(encoding="utf-8").strip()
+    generated = secrets.token_urlsafe(9)
+    ACCESS_CODE_PATH.write_text(generated, encoding="utf-8")
+    print("Voxera access code generated. Keep data/access_code.txt private.")
+    return generated
+
+
+def token_for(code: str) -> str:
+    return hmac.new(access_code().encode(), code.encode(), hashlib.sha256).hexdigest()
+
+
+def require_access(request: Request) -> None:
+    provided = request.headers.get("X-Access-Token", "")
+    if not provided or not hmac.compare_digest(provided, token_for(access_code())):
+        raise HTTPException(status_code=401, detail="Valid Voxera access code required")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 
 SUPPORTED_LANGUAGES = {"en-IN": "English", "te-IN": "Telugu", "hi-IN": "Hindi"}
@@ -165,6 +192,7 @@ def response_for(message: str, language: str) -> tuple[str, float, str, dict[str
 @app.on_event("startup")
 def startup() -> None:
     init_db()
+    access_code()
 
 
 @app.get("/api/health")
@@ -174,6 +202,20 @@ def health() -> dict[str, Any]:
     return {"status": "ok", "service": "voxera", "articles": articles, "languages": SUPPORTED_LANGUAGES}
 
 
+@app.post("/api/auth/login")
+def login(payload: dict[str, str]) -> dict[str, Any]:
+    supplied = str(payload.get("access_code", "")).strip()
+    if not supplied or not hmac.compare_digest(supplied, access_code()):
+        raise HTTPException(status_code=401, detail="Invalid access code")
+    return {"status": "authenticated", "token": token_for(supplied)}
+
+
+@app.get("/api/auth/status")
+def auth_status(request: Request) -> dict[str, str]:
+    require_access(request)
+    return {"status": "authenticated"}
+
+
 @app.get("/api/greeting")
 def greeting(language: str = "en-IN") -> dict[str, str]:
     language = language if language in SUPPORTED_LANGUAGES else "en-IN"
@@ -181,7 +223,8 @@ def greeting(language: str = "en-IN") -> dict[str, str]:
 
 
 @app.post("/api/chat")
-def chat(payload: ChatRequest) -> dict[str, Any]:
+def chat(payload: ChatRequest, request: Request) -> dict[str, Any]:
+    require_access(request)
     language = payload.language if payload.language in SUPPORTED_LANGUAGES else "en-IN"
     conversation_id = payload.conversation_id or str(uuid.uuid4())
     answer, confidence, source, citation = response_for(payload.message, language)
@@ -202,7 +245,8 @@ def chat(payload: ChatRequest) -> dict[str, Any]:
 
 
 @app.post("/api/feedback")
-def feedback(payload: FeedbackRequest) -> dict[str, str]:
+def feedback(payload: FeedbackRequest, request: Request) -> dict[str, str]:
+    require_access(request)
     with db() as con:
         con.execute(
             "INSERT INTO feedback VALUES (?, ?, ?, ?, ?)",
@@ -212,7 +256,8 @@ def feedback(payload: FeedbackRequest) -> dict[str, str]:
 
 
 @app.post("/api/handoff")
-def handoff(payload: HandoffRequest) -> dict[str, Any]:
+def handoff(payload: HandoffRequest, request: Request) -> dict[str, Any]:
+    require_access(request)
     language = payload.language if payload.language in SUPPORTED_LANGUAGES else "en-IN"
     with db() as con:
         handoff_id = str(uuid.uuid4())
@@ -224,7 +269,8 @@ def handoff(payload: HandoffRequest) -> dict[str, Any]:
 
 
 @app.get("/api/articles")
-def articles(q: str = "") -> list[dict[str, Any]]:
+def articles(request: Request, q: str = "") -> list[dict[str, Any]]:
+    require_access(request)
     with db() as con:
         rows = con.execute("SELECT * FROM articles ORDER BY created_at DESC").fetchall()
     result = []
@@ -238,7 +284,8 @@ def articles(q: str = "") -> list[dict[str, Any]]:
 
 
 @app.post("/api/articles")
-def create_article(payload: ArticleRequest) -> dict[str, Any]:
+def create_article(payload: ArticleRequest, request: Request) -> dict[str, Any]:
+    require_access(request)
     item = (
         str(uuid.uuid4()),
         payload.title,
@@ -254,7 +301,8 @@ def create_article(payload: ArticleRequest) -> dict[str, Any]:
 
 
 @app.get("/api/metrics")
-def metrics() -> dict[str, Any]:
+def metrics(request: Request) -> dict[str, Any]:
+    require_access(request)
     with db() as con:
         conversations = con.execute("SELECT COUNT(*) AS n FROM conversations").fetchone()["n"]
         handoffs = con.execute("SELECT COUNT(*) AS n FROM handoffs").fetchone()["n"]
