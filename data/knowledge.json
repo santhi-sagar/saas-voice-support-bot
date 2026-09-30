@@ -4,34 +4,54 @@
     "category": "Account",
     "keywords": ["password", "reset", "forgot", "login", "sign in"],
     "content": "To reset your password, open the sign-in page, select Forgot password, enter your work email, and follow the secure link. The link expires after 30 minutes. If it does not arrive, check spam and confirm that you used the email linked to your workspace.",
-    "steps": ["Open the sign-in page", "Choose Forgot password", "Check your email and follow the secure link", "Create a new password"]
+    "steps": ["Open the sign-in page", "Choose Forgot password", "Check your email and follow the secure link", "Create a new password"],
+    "translations": {
+      "te-IN": {"content": "మీ పాస్‌వర్డ్‌ను రీసెట్ చేయడానికి సైన్-ఇన్ పేజీని తెరిచి, Forgot password ఎంపికను ఎంచుకోండి. మీ వర్క్ ఇమెయిల్ నమోదు చేసి సురక్షిత లింక్‌ను అనుసరించండి. ఈ లింక్ 30 నిమిషాల తర్వాత గడువు ముగుస్తుంది.", "steps": ["సైన్-ఇన్ పేజీని తెరవండి", "Forgot password ఎంచుకోండి", "ఇమెయిల్‌లోని సురక్షిత లింక్‌ను తెరవండి", "కొత్త పాస్‌వర్డ్ సృష్టించండి"]},
+      "hi-IN": {"content": "पासवर्ड रीसेट करने के लिए साइन-इन पेज खोलें और Forgot password चुनें। अपना कार्य ईमेल डालकर सुरक्षित लिंक का पालन करें। यह लिंक 30 मिनट के बाद समाप्त हो जाता है।", "steps": ["साइन-इन पेज खोलें", "Forgot password चुनें", "ईमेल में सुरक्षित लिंक खोलें", "नया पासवर्ड बनाएं"]}
+    }
   },
   {
     "title": "Invite a teammate",
     "category": "Workspace",
     "keywords": ["invite", "teammate", "member", "user", "workspace"],
     "content": "Workspace admins can invite teammates from Settings, then Members, and select Invite member. Enter the teammate's work email, choose a role, and send the invitation. Pending invitations can be cancelled from the same screen.",
-    "steps": ["Open Settings", "Select Members", "Choose Invite member", "Enter an email and role"]
+    "steps": ["Open Settings", "Select Members", "Choose Invite member", "Enter an email and role"],
+    "translations": {
+      "te-IN": {"content": "వర్క్‌స్పేస్ అడ్మిన్‌లు Settings తర్వాత Members లోకి వెళ్లి Invite member ఎంచుకోవచ్చు. సహచరుడి వర్క్ ఇమెయిల్, పాత్ర నమోదు చేసి ఆహ్వానం పంపండి.", "steps": ["Settings తెరవండి", "Members ఎంచుకోండి", "Invite member ఎంచుకోండి", "ఇమెయిల్ మరియు పాత్ర నమోదు చేయండి"]},
+      "hi-IN": {"content": "वर्कस्पेस एडमिन Settings में जाकर Members और फिर Invite member चुन सकते हैं। सहकर्मी का कार्य ईमेल और भूमिका डालकर आमंत्रण भेजें।", "steps": ["Settings खोलें", "Members चुनें", "Invite member चुनें", "ईमेल और भूमिका डालें"]}
+    }
   },
   {
     "title": "Billing and plan changes",
     "category": "Billing",
     "keywords": ["billing", "payment", "plan", "upgrade", "downgrade", "invoice", "subscription"],
     "content": "Billing admins can view invoices and change plans from Settings, then Billing. Plan changes are shown before confirmation. Downgrades take effect at the next renewal, while upgrades are applied immediately and may be prorated.",
-    "steps": ["Open Settings", "Select Billing", "Review the current plan", "Choose a plan and confirm"]
+    "steps": ["Open Settings", "Select Billing", "Review the current plan", "Choose a plan and confirm"],
+    "translations": {
+      "te-IN": {"content": "బిల్లింగ్ అడ్మిన్‌లు Settings తర్వాత Billing లో ఇన్‌వాయిస్‌లు చూడవచ్చు మరియు ప్లాన్ మార్చవచ్చు. డౌన్‌గ్రేడ్ తదుపరి రీన్యువల్‌లో అమలవుతుంది; అప్‌గ్రేడ్ వెంటనే అమలవుతుంది.", "steps": ["Settings తెరవండి", "Billing ఎంచుకోండి", "ప్రస్తుత ప్లాన్ చూడండి", "ప్లాన్ ఎంచుకుని నిర్ధారించండి"]},
+      "hi-IN": {"content": "बिलिंग एडमिन Settings में Billing खोलकर इनवॉइस देख और प्लान बदल सकते हैं। डाउनग्रेड अगले नवीनीकरण पर लागू होता है, जबकि अपग्रेड तुरंत लागू हो सकता है।", "steps": ["Settings खोलें", "Billing चुनें", "वर्तमान प्लान देखें", "प्लान चुनकर पुष्टि करें"]}
+    }
   },
   {
     "title": "Exporting workspace data",
     "category": "Data",
     "keywords": ["export", "download", "csv", "data", "workspace"],
     "content": "Workspace admins can export workspace data from Settings, then Data export. Select the date range and format, then request the export. A secure download link is sent when the export is ready.",
-    "steps": ["Open Settings", "Select Data export", "Choose a date range and format", "Request the export"]
+    "steps": ["Open Settings", "Select Data export", "Choose a date range and format", "Request the export"],
+    "translations": {
+      "te-IN": {"content": "వర్క్‌స్పేస్ అడ్మిన్‌లు Settings తర్వాత Data export లో డేటాను ఎగుమతి చేయవచ్చు. తేదీ పరిధి మరియు ఫార్మాట్ ఎంచుకుని ఎగుమతిని అభ్యర్థించండి. సిద్ధమైన తర్వాత సురక్షిత డౌన్‌లోడ్ లింక్ పంపబడుతుంది.", "steps": ["Settings తెరవండి", "Data export ఎంచుకోండి", "తేదీ పరిధి మరియు ఫార్మాట్ ఎంచుకోండి", "ఎగుమతిని అభ్యర్థించండి"]},
+      "hi-IN": {"content": "वर्कस्पेस एडमिन Settings में Data export खोलकर डेटा एक्सपोर्ट कर सकते हैं। तारीख और फॉर्मेट चुनकर अनुरोध करें। तैयार होने पर सुरक्षित डाउनलोड लिंक भेजा जाएगा।", "steps": ["Settings खोलें", "Data export चुनें", "तारीख और फॉर्मेट चुनें", "एक्सपोर्ट का अनुरोध करें"]}
+    }
   },
   {
     "title": "Contact a human support specialist",
     "category": "Support",
     "keywords": ["human", "agent", "person", "support", "contact", "help"],
     "content": "If the assistant cannot resolve your issue, you can request a human support specialist. Share your email and a short description. The support team reviews requests during business hours and replies by email.",
-    "steps": ["Select Talk to a human", "Enter your email", "Describe the issue", "Submit the request"]
+    "steps": ["Select Talk to a human", "Enter your email", "Describe the issue", "Submit the request"],
+    "translations": {
+      "te-IN": {"content": "అసిస్టెంట్ మీ సమస్యను పరిష్కరించలేకపోతే మానవ సపోర్ట్ నిపుణుడిని అభ్యర్థించవచ్చు. మీ ఇమెయిల్ మరియు సమస్య వివరాలను పంపండి. సపోర్ట్ టీమ్ ఇమెయిల్ ద్వారా స్పందిస్తుంది.", "steps": ["Talk to a human ఎంచుకోండి", "మీ ఇమెయిల్ నమోదు చేయండి", "సమస్యను వివరించండి", "అభ్యర్థన పంపండి"]},
+      "hi-IN": {"content": "यदि असिस्टेंट आपकी समस्या हल नहीं कर पाता, तो आप मानव सपोर्ट विशेषज्ञ का अनुरोध कर सकते हैं। अपना ईमेल और समस्या का छोटा विवरण दें। सपोर्ट टीम ईमेल से जवाब देगी।", "steps": ["Talk to a human चुनें", "अपना ईमेल डालें", "समस्या बताएं", "अनुरोध भेजें"]}
+    }
   }
 ]
