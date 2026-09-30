@@ -2,56 +2,586 @@
   {
     "title": "Resetting your password",
     "category": "Account",
-    "keywords": ["password", "reset", "forgot", "login", "sign in"],
+    "keywords": [
+      "password",
+      "reset",
+      "forgot",
+      "login",
+      "sign in"
+    ],
     "content": "To reset your password, open the sign-in page, select Forgot password, enter your work email, and follow the secure link. The link expires after 30 minutes. If it does not arrive, check spam and confirm that you used the email linked to your workspace.",
-    "steps": ["Open the sign-in page", "Choose Forgot password", "Check your email and follow the secure link", "Create a new password"],
+    "steps": [
+      "Open the sign-in page",
+      "Choose Forgot password",
+      "Check your email and follow the secure link",
+      "Create a new password"
+    ],
     "translations": {
-      "te-IN": {"content": "మీ పాస్‌వర్డ్‌ను రీసెట్ చేయడానికి సైన్-ఇన్ పేజీని తెరిచి, Forgot password ఎంపికను ఎంచుకోండి. మీ వర్క్ ఇమెయిల్ నమోదు చేసి సురక్షిత లింక్‌ను అనుసరించండి. ఈ లింక్ 30 నిమిషాల తర్వాత గడువు ముగుస్తుంది.", "steps": ["సైన్-ఇన్ పేజీని తెరవండి", "Forgot password ఎంచుకోండి", "ఇమెయిల్‌లోని సురక్షిత లింక్‌ను తెరవండి", "కొత్త పాస్‌వర్డ్ సృష్టించండి"]},
-      "hi-IN": {"content": "पासवर्ड रीसेट करने के लिए साइन-इन पेज खोलें और Forgot password चुनें। अपना कार्य ईमेल डालकर सुरक्षित लिंक का पालन करें। यह लिंक 30 मिनट के बाद समाप्त हो जाता है।", "steps": ["साइन-इन पेज खोलें", "Forgot password चुनें", "ईमेल में सुरक्षित लिंक खोलें", "नया पासवर्ड बनाएं"]}
+      "te-IN": {
+        "content": "మీ పాస్‌వర్డ్‌ను రీసెట్ చేయడానికి సైన్-ఇన్ పేజీని తెరిచి, Forgot password ఎంపికను ఎంచుకోండి. మీ వర్క్ ఇమెయిల్ నమోదు చేసి సురక్షిత లింక్‌ను అనుసరించండి. ఈ లింక్ 30 నిమిషాల తర్వాత గడువు ముగుస్తుంది.",
+        "steps": [
+          "సైన్-ఇన్ పేజీని తెరవండి",
+          "Forgot password ఎంచుకోండి",
+          "ఇమెయిల్‌లోని సురక్షిత లింక్‌ను తెరవండి",
+          "కొత్త పాస్‌వర్డ్ సృష్టించండి"
+        ]
+      },
+      "hi-IN": {
+        "content": "पासवर्ड रीसेट करने के लिए साइन-इन पेज खोलें और Forgot password चुनें। अपना कार्य ईमेल डालकर सुरक्षित लिंक का पालन करें। यह लिंक 30 मिनट के बाद समाप्त हो जाता है।",
+        "steps": [
+          "साइन-इन पेज खोलें",
+          "Forgot password चुनें",
+          "ईमेल में सुरक्षित लिंक खोलें",
+          "नया पासवर्ड बनाएं"
+        ]
+      }
     }
   },
   {
     "title": "Invite a teammate",
     "category": "Workspace",
-    "keywords": ["invite", "teammate", "member", "user", "workspace"],
+    "keywords": [
+      "invite",
+      "teammate",
+      "member",
+      "user",
+      "workspace"
+    ],
     "content": "Workspace admins can invite teammates from Settings, then Members, and select Invite member. Enter the teammate's work email, choose a role, and send the invitation. Pending invitations can be cancelled from the same screen.",
-    "steps": ["Open Settings", "Select Members", "Choose Invite member", "Enter an email and role"],
+    "steps": [
+      "Open Settings",
+      "Select Members",
+      "Choose Invite member",
+      "Enter an email and role"
+    ],
     "translations": {
-      "te-IN": {"content": "వర్క్‌స్పేస్ అడ్మిన్‌లు Settings తర్వాత Members లోకి వెళ్లి Invite member ఎంచుకోవచ్చు. సహచరుడి వర్క్ ఇమెయిల్, పాత్ర నమోదు చేసి ఆహ్వానం పంపండి.", "steps": ["Settings తెరవండి", "Members ఎంచుకోండి", "Invite member ఎంచుకోండి", "ఇమెయిల్ మరియు పాత్ర నమోదు చేయండి"]},
-      "hi-IN": {"content": "वर्कस्पेस एडमिन Settings में जाकर Members और फिर Invite member चुन सकते हैं। सहकर्मी का कार्य ईमेल और भूमिका डालकर आमंत्रण भेजें।", "steps": ["Settings खोलें", "Members चुनें", "Invite member चुनें", "ईमेल और भूमिका डालें"]}
+      "te-IN": {
+        "content": "వర్క్‌స్పేస్ అడ్మిన్‌లు Settings తర్వాత Members లోకి వెళ్లి Invite member ఎంచుకోవచ్చు. సహచరుడి వర్క్ ఇమెయిల్, పాత్ర నమోదు చేసి ఆహ్వానం పంపండి.",
+        "steps": [
+          "Settings తెరవండి",
+          "Members ఎంచుకోండి",
+          "Invite member ఎంచుకోండి",
+          "ఇమెయిల్ మరియు పాత్ర నమోదు చేయండి"
+        ]
+      },
+      "hi-IN": {
+        "content": "वर्कस्पेस एडमिन Settings में जाकर Members और फिर Invite member चुन सकते हैं। सहकर्मी का कार्य ईमेल और भूमिका डालकर आमंत्रण भेजें।",
+        "steps": [
+          "Settings खोलें",
+          "Members चुनें",
+          "Invite member चुनें",
+          "ईमेल और भूमिका डालें"
+        ]
+      }
     }
   },
   {
     "title": "Billing and plan changes",
     "category": "Billing",
-    "keywords": ["billing", "payment", "plan", "upgrade", "downgrade", "invoice", "subscription"],
+    "keywords": [
+      "billing",
+      "payment",
+      "plan",
+      "upgrade",
+      "downgrade",
+      "invoice",
+      "subscription"
+    ],
     "content": "Billing admins can view invoices and change plans from Settings, then Billing. Plan changes are shown before confirmation. Downgrades take effect at the next renewal, while upgrades are applied immediately and may be prorated.",
-    "steps": ["Open Settings", "Select Billing", "Review the current plan", "Choose a plan and confirm"],
+    "steps": [
+      "Open Settings",
+      "Select Billing",
+      "Review the current plan",
+      "Choose a plan and confirm"
+    ],
     "translations": {
-      "te-IN": {"content": "బిల్లింగ్ అడ్మిన్‌లు Settings తర్వాత Billing లో ఇన్‌వాయిస్‌లు చూడవచ్చు మరియు ప్లాన్ మార్చవచ్చు. డౌన్‌గ్రేడ్ తదుపరి రీన్యువల్‌లో అమలవుతుంది; అప్‌గ్రేడ్ వెంటనే అమలవుతుంది.", "steps": ["Settings తెరవండి", "Billing ఎంచుకోండి", "ప్రస్తుత ప్లాన్ చూడండి", "ప్లాన్ ఎంచుకుని నిర్ధారించండి"]},
-      "hi-IN": {"content": "बिलिंग एडमिन Settings में Billing खोलकर इनवॉइस देख और प्लान बदल सकते हैं। डाउनग्रेड अगले नवीनीकरण पर लागू होता है, जबकि अपग्रेड तुरंत लागू हो सकता है।", "steps": ["Settings खोलें", "Billing चुनें", "वर्तमान प्लान देखें", "प्लान चुनकर पुष्टि करें"]}
+      "te-IN": {
+        "content": "బిల్లింగ్ అడ్మిన్‌లు Settings తర్వాత Billing లో ఇన్‌వాయిస్‌లు చూడవచ్చు మరియు ప్లాన్ మార్చవచ్చు. డౌన్‌గ్రేడ్ తదుపరి రీన్యువల్‌లో అమలవుతుంది; అప్‌గ్రేడ్ వెంటనే అమలవుతుంది.",
+        "steps": [
+          "Settings తెరవండి",
+          "Billing ఎంచుకోండి",
+          "ప్రస్తుత ప్లాన్ చూడండి",
+          "ప్లాన్ ఎంచుకుని నిర్ధారించండి"
+        ]
+      },
+      "hi-IN": {
+        "content": "बिलिंग एडमिन Settings में Billing खोलकर इनवॉइस देख और प्लान बदल सकते हैं। डाउनग्रेड अगले नवीनीकरण पर लागू होता है, जबकि अपग्रेड तुरंत लागू हो सकता है।",
+        "steps": [
+          "Settings खोलें",
+          "Billing चुनें",
+          "वर्तमान प्लान देखें",
+          "प्लान चुनकर पुष्टि करें"
+        ]
+      }
     }
   },
   {
     "title": "Exporting workspace data",
     "category": "Data",
-    "keywords": ["export", "download", "csv", "data", "workspace"],
+    "keywords": [
+      "export",
+      "download",
+      "csv",
+      "data",
+      "workspace"
+    ],
     "content": "Workspace admins can export workspace data from Settings, then Data export. Select the date range and format, then request the export. A secure download link is sent when the export is ready.",
-    "steps": ["Open Settings", "Select Data export", "Choose a date range and format", "Request the export"],
+    "steps": [
+      "Open Settings",
+      "Select Data export",
+      "Choose a date range and format",
+      "Request the export"
+    ],
     "translations": {
-      "te-IN": {"content": "వర్క్‌స్పేస్ అడ్మిన్‌లు Settings తర్వాత Data export లో డేటాను ఎగుమతి చేయవచ్చు. తేదీ పరిధి మరియు ఫార్మాట్ ఎంచుకుని ఎగుమతిని అభ్యర్థించండి. సిద్ధమైన తర్వాత సురక్షిత డౌన్‌లోడ్ లింక్ పంపబడుతుంది.", "steps": ["Settings తెరవండి", "Data export ఎంచుకోండి", "తేదీ పరిధి మరియు ఫార్మాట్ ఎంచుకోండి", "ఎగుమతిని అభ్యర్థించండి"]},
-      "hi-IN": {"content": "वर्कस्पेस एडमिन Settings में Data export खोलकर डेटा एक्सपोर्ट कर सकते हैं। तारीख और फॉर्मेट चुनकर अनुरोध करें। तैयार होने पर सुरक्षित डाउनलोड लिंक भेजा जाएगा।", "steps": ["Settings खोलें", "Data export चुनें", "तारीख और फॉर्मेट चुनें", "एक्सपोर्ट का अनुरोध करें"]}
+      "te-IN": {
+        "content": "వర్క్‌స్పేస్ అడ్మిన్‌లు Settings తర్వాత Data export లో డేటాను ఎగుమతి చేయవచ్చు. తేదీ పరిధి మరియు ఫార్మాట్ ఎంచుకుని ఎగుమతిని అభ్యర్థించండి. సిద్ధమైన తర్వాత సురక్షిత డౌన్‌లోడ్ లింక్ పంపబడుతుంది.",
+        "steps": [
+          "Settings తెరవండి",
+          "Data export ఎంచుకోండి",
+          "తేదీ పరిధి మరియు ఫార్మాట్ ఎంచుకోండి",
+          "ఎగుమతిని అభ్యర్థించండి"
+        ]
+      },
+      "hi-IN": {
+        "content": "वर्कस्पेस एडमिन Settings में Data export खोलकर डेटा एक्सपोर्ट कर सकते हैं। तारीख और फॉर्मेट चुनकर अनुरोध करें। तैयार होने पर सुरक्षित डाउनलोड लिंक भेजा जाएगा।",
+        "steps": [
+          "Settings खोलें",
+          "Data export चुनें",
+          "तारीख और फॉर्मेट चुनें",
+          "एक्सपोर्ट का अनुरोध करें"
+        ]
+      }
     }
   },
   {
     "title": "Contact a human support specialist",
     "category": "Support",
-    "keywords": ["human", "agent", "person", "support", "contact", "help"],
+    "keywords": [
+      "human",
+      "agent",
+      "person",
+      "support",
+      "contact",
+      "help"
+    ],
     "content": "If the assistant cannot resolve your issue, you can request a human support specialist. Share your email and a short description. The support team reviews requests during business hours and replies by email.",
-    "steps": ["Select Talk to a human", "Enter your email", "Describe the issue", "Submit the request"],
+    "steps": [
+      "Select Talk to a human",
+      "Enter your email",
+      "Describe the issue",
+      "Submit the request"
+    ],
     "translations": {
-      "te-IN": {"content": "అసిస్టెంట్ మీ సమస్యను పరిష్కరించలేకపోతే మానవ సపోర్ట్ నిపుణుడిని అభ్యర్థించవచ్చు. మీ ఇమెయిల్ మరియు సమస్య వివరాలను పంపండి. సపోర్ట్ టీమ్ ఇమెయిల్ ద్వారా స్పందిస్తుంది.", "steps": ["Talk to a human ఎంచుకోండి", "మీ ఇమెయిల్ నమోదు చేయండి", "సమస్యను వివరించండి", "అభ్యర్థన పంపండి"]},
-      "hi-IN": {"content": "यदि असिस्टेंट आपकी समस्या हल नहीं कर पाता, तो आप मानव सपोर्ट विशेषज्ञ का अनुरोध कर सकते हैं। अपना ईमेल और समस्या का छोटा विवरण दें। सपोर्ट टीम ईमेल से जवाब देगी।", "steps": ["Talk to a human चुनें", "अपना ईमेल डालें", "समस्या बताएं", "अनुरोध भेजें"]}
+      "te-IN": {
+        "content": "అసిస్టెంట్ మీ సమస్యను పరిష్కరించలేకపోతే మానవ సపోర్ట్ నిపుణుడిని అభ్యర్థించవచ్చు. మీ ఇమెయిల్ మరియు సమస్య వివరాలను పంపండి. సపోర్ట్ టీమ్ ఇమెయిల్ ద్వారా స్పందిస్తుంది.",
+        "steps": [
+          "Talk to a human ఎంచుకోండి",
+          "మీ ఇమెయిల్ నమోదు చేయండి",
+          "సమస్యను వివరించండి",
+          "అభ్యర్థన పంపండి"
+        ]
+      },
+      "hi-IN": {
+        "content": "यदि असिस्टेंट आपकी समस्या हल नहीं कर पाता, तो आप मानव सपोर्ट विशेषज्ञ का अनुरोध कर सकते हैं। अपना ईमेल और समस्या का छोटा विवरण दें। सपोर्ट टीम ईमेल से जवाब देगी।",
+        "steps": [
+          "Talk to a human चुनें",
+          "अपना ईमेल डालें",
+          "समस्या बताएं",
+          "अनुरोध भेजें"
+        ]
+      }
+    }
+  },
+  {
+    "title": "Troubleshooting sign-in",
+    "category": "Login",
+    "keywords": [
+      "sign-in",
+      "login",
+      "unable",
+      "access",
+      "error",
+      "blocked"
+    ],
+    "content": "If you cannot sign in, confirm that you are using the work email linked to the workspace, check your internet connection, and try a private browser window. If the error continues, reset your password and ask a workspace admin to confirm that your account is active. Never share your password or one-time code with support.",
+    "steps": [
+      "Confirm the correct work email",
+      "Try a private browser window",
+      "Reset your password if needed",
+      "Ask an admin to confirm account access"
+    ],
+    "translations": {
+      "te-IN": {
+        "content": "సైన్-ఇన్ చేయలేకపోతే, వర్క్‌స్పేస్‌కు అనుసంధానమైన వర్క్ ఇమెయిల్‌ను ఉపయోగిస్తున్నారో చూసి, ఇంటర్నెట్ కనెక్షన్ తనిఖీ చేసి, ప్రైవేట్ బ్రౌజర్ విండోలో ప్రయత్నించండి. సమస్య కొనసాగితే పాస్‌వర్డ్ రీసెట్ చేసి, మీ ఖాతా యాక్టివ్‌గా ఉందో అడ్మిన్‌ను అడగండి. పాస్‌వర్డ్ లేదా వన్-టైమ్ కోడ్‌ను ఎవరికీ ఇవ్వకండి.",
+        "steps": [
+          "సరైన వర్క్ ఇమెయిల్‌ను నిర్ధారించండి",
+          "ప్రైవేట్ బ్రౌజర్ విండోలో ప్రయత్నించండి",
+          "అవసరమైతే పాస్‌వర్డ్ రీసెట్ చేయండి",
+          "ఖాతా యాక్సెస్‌ను అడ్మిన్‌తో నిర్ధారించండి"
+        ]
+      },
+      "hi-IN": {
+        "content": "साइन इन न होने पर वर्कस्पेस से जुड़े कार्य ईमेल की पुष्टि करें, इंटरनेट कनेक्शन जांचें और निजी ब्राउज़र विंडो में प्रयास करें। समस्या बनी रहे तो पासवर्ड रीसेट करें और एडमिन से खाते की सक्रिय स्थिति की पुष्टि कराएं। अपना पासवर्ड या वन-टाइम कोड किसी के साथ साझा न करें।",
+        "steps": [
+          "सही कार्य ईमेल की पुष्टि करें",
+          "निजी ब्राउज़र विंडो में प्रयास करें",
+          "जरूरत हो तो पासवर्ड रीसेट करें",
+          "एडमिन से खाते की पहुंच की पुष्टि कराएं"
+        ]
+      }
+    }
+  },
+  {
+    "title": "Set up two-step verification",
+    "category": "Login",
+    "keywords": [
+      "two-step",
+      "2FA",
+      "MFA",
+      "authenticator",
+      "verification",
+      "security"
+    ],
+    "content": "To protect your account, open Settings, then Security, and choose Two-step verification. Scan the QR code with an authenticator app, enter the six-digit code, and save the recovery codes somewhere secure. Support cannot bypass two-step verification without an account-recovery review.",
+    "steps": [
+      "Open Settings and Security",
+      "Choose Two-step verification",
+      "Scan the QR code in an authenticator app",
+      "Save recovery codes securely"
+    ],
+    "translations": {
+      "te-IN": {
+        "content": "మీ ఖాతాను రక్షించడానికి Settings తర్వాత Security తెరిచి Two-step verification ఎంచుకోండి. ఆథెంటికేటర్ యాప్‌తో QR కోడ్ స్కాన్ చేసి ఆరు అంకెల కోడ్ నమోదు చేయండి. రికవరీ కోడ్‌లను సురక్షితంగా భద్రపరచండి.",
+        "steps": [
+          "Settings మరియు Security తెరవండి",
+          "Two-step verification ఎంచుకోండి",
+          "ఆథెంటికేటర్ యాప్‌తో QR కోడ్ స్కాన్ చేయండి",
+          "రికవరీ కోడ్‌లను భద్రపరచండి"
+        ]
+      },
+      "hi-IN": {
+        "content": "खाते की सुरक्षा के लिए Settings में Security खोलें और Two-step verification चुनें। ऑथेंटिकेटर ऐप से QR कोड स्कैन करें, छह अंकों का कोड डालें और रिकवरी कोड सुरक्षित रखें।",
+        "steps": [
+          "Settings और Security खोलें",
+          "Two-step verification चुनें",
+          "ऑथेंटिकेटर ऐप से QR कोड स्कैन करें",
+          "रिकवरी कोड सुरक्षित रखें"
+        ]
+      }
+    }
+  },
+  {
+    "title": "Download an invoice",
+    "category": "Billing",
+    "keywords": [
+      "invoice",
+      "receipt",
+      "download",
+      "PDF",
+      "billing",
+      "statement"
+    ],
+    "content": "Billing admins can download invoices from Settings, then Billing, then Invoice history. Select an invoice to view its details and choose Download PDF. If an invoice is missing, confirm that you are signed in as a billing admin and check the correct workspace.",
+    "steps": [
+      "Open Settings",
+      "Select Billing",
+      "Open Invoice history",
+      "Choose an invoice and download PDF"
+    ],
+    "translations": {
+      "te-IN": {
+        "content": "బిల్లింగ్ అడ్మిన్‌లు Settings తర్వాత Billing, ఆపై Invoice history నుంచి ఇన్‌వాయిస్ డౌన్‌లోడ్ చేయవచ్చు. ఇన్‌వాయిస్ ఎంచుకుని వివరాలు చూసి Download PDF ఎంచుకోండి.",
+        "steps": [
+          "Settings తెరవండి",
+          "Billing ఎంచుకోండి",
+          "Invoice history తెరవండి",
+          "ఇన్‌వాయిస్ ఎంచుకుని PDF డౌన్‌లోడ్ చేయండి"
+        ]
+      },
+      "hi-IN": {
+        "content": "बिलिंग एडमिन Settings में Billing और फिर Invoice history खोलकर इनवॉइस डाउनलोड कर सकते हैं। इनवॉइस चुनें, विवरण देखें और Download PDF चुनें।",
+        "steps": [
+          "Settings खोलें",
+          "Billing चुनें",
+          "Invoice history खोलें",
+          "इनवॉइस चुनकर PDF डाउनलोड करें"
+        ]
+      }
+    }
+  },
+  {
+    "title": "Resolve a failed payment",
+    "category": "Billing",
+    "keywords": [
+      "payment",
+      "failed",
+      "fail",
+      "declined",
+      "card",
+      "retry",
+      "billing"
+    ],
+    "content": "If a payment fails, open Settings, then Billing, and review the payment method. Confirm that the card is active, has not expired, and allows online or recurring payments. Update the method and retry once. If the payment still fails, contact your bank or ask a billing admin to use another method; do not submit repeated attempts rapidly.",
+    "steps": [
+      "Open Billing and review the payment method",
+      "Confirm the card is active and not expired",
+      "Update the method if needed",
+      "Retry once or use another method"
+    ],
+    "translations": {
+      "te-IN": {
+        "content": "చెల్లింపు విఫలమైతే Settings తర్వాత Billing లో చెల్లింపు పద్ధతిని చూడండి. కార్డ్ యాక్టివ్‌గా ఉందో, గడువు ముగియలేదో, ఆన్‌లైన్ లేదా రికరింగ్ చెల్లింపులు అనుమతిస్తుందో నిర్ధారించండి. పద్ధతిని అప్‌డేట్ చేసి ఒక్కసారి ప్రయత్నించండి.",
+        "steps": [
+          "Billing లో చెల్లింపు పద్ధతిని చూడండి",
+          "కార్డ్ యాక్టివ్‌గా ఉందో నిర్ధారించండి",
+          "అవసరమైతే పద్ధతిని అప్‌డేట్ చేయండి",
+          "ఒక్కసారి మళ్లీ ప్రయత్నించండి లేదా మరో పద్ధతి వాడండి"
+        ]
+      },
+      "hi-IN": {
+        "content": "भुगतान विफल होने पर Settings में Billing खोलकर भुगतान विधि देखें। कार्ड सक्रिय है, समाप्त नहीं हुआ है और ऑनलाइन या आवर्ती भुगतान की अनुमति देता है, यह जांचें। विधि अपडेट करके एक बार फिर प्रयास करें।",
+        "steps": [
+          "Billing में भुगतान विधि देखें",
+          "कार्ड सक्रिय होने की पुष्टि करें",
+          "जरूरत हो तो विधि अपडेट करें",
+          "एक बार फिर प्रयास करें या दूसरी विधि चुनें"
+        ]
+      }
+    }
+  },
+  {
+    "title": "Update tax and billing details",
+    "category": "Billing",
+    "keywords": [
+      "tax",
+      "VAT",
+      "GST",
+      "billing address",
+      "company",
+      "legal"
+    ],
+    "content": "Billing admins can update the company name, billing address, tax ID, or purchase-order details from Settings, then Billing, then Billing details. Changes apply to future invoices. If a past invoice needs correction, contact the billing team instead of editing the invoice.",
+    "steps": [
+      "Open Settings and Billing",
+      "Select Billing details",
+      "Update company or tax information",
+      "Save the changes"
+    ],
+    "translations": {
+      "te-IN": {
+        "content": "బిల్లింగ్ అడ్మిన్‌లు Settings తర్వాత Billing లో Billing details ద్వారా కంపెనీ పేరు, బిల్లింగ్ చిరునామా లేదా పన్ను వివరాలను అప్‌డేట్ చేయవచ్చు. మార్పులు భవిష్యత్ ఇన్‌వాయిస్‌లకు వర్తిస్తాయి.",
+        "steps": [
+          "Settings మరియు Billing తెరవండి",
+          "Billing details ఎంచుకోండి",
+          "కంపెనీ లేదా పన్ను వివరాలు అప్‌డేట్ చేయండి",
+          "మార్పులు సేవ్ చేయండి"
+        ]
+      },
+      "hi-IN": {
+        "content": "बिलिंग एडमिन Settings में Billing और फिर Billing details से कंपनी का नाम, बिलिंग पता या टैक्स जानकारी अपडेट कर सकते हैं। बदलाव भविष्य के इनवॉइस पर लागू होंगे।",
+        "steps": [
+          "Settings और Billing खोलें",
+          "Billing details चुनें",
+          "कंपनी या टैक्स जानकारी अपडेट करें",
+          "बदलाव सेव करें"
+        ]
+      }
+    }
+  },
+  {
+    "title": "Cancel a subscription",
+    "category": "Subscriptions",
+    "keywords": [
+      "cancel",
+      "subscription",
+      "renewal",
+      "stop",
+      "plan",
+      "end"
+    ],
+    "content": "To cancel a subscription, open Settings, then Billing, and choose Manage subscription. Select Cancel subscription and review the effective date before confirming. Access normally continues until the current paid period ends. Export any required data before the cancellation date.",
+    "steps": [
+      "Open Settings and Billing",
+      "Choose Manage subscription",
+      "Select Cancel subscription",
+      "Review the effective date and confirm"
+    ],
+    "translations": {
+      "te-IN": {
+        "content": "సబ్‌స్క్రిప్షన్ రద్దు చేయడానికి Settings తర్వాత Billing లో Manage subscription ఎంచుకోండి. Cancel subscription ఎంచుకుని అమలు తేదీ చూసి నిర్ధారించండి. ప్రస్తుత చెల్లింపు కాలం ముగిసే వరకు యాక్సెస్ సాధారణంగా కొనసాగుతుంది.",
+        "steps": [
+          "Settings మరియు Billing తెరవండి",
+          "Manage subscription ఎంచుకోండి",
+          "Cancel subscription ఎంచుకోండి",
+          "అమలు తేదీ చూసి నిర్ధారించండి"
+        ]
+      },
+      "hi-IN": {
+        "content": "सब्सक्रिप्शन रद्द करने के लिए Settings में Billing खोलकर Manage subscription चुनें। Cancel subscription चुनकर प्रभावी तारीख देखें और पुष्टि करें। वर्तमान भुगतान अवधि समाप्त होने तक पहुंच आमतौर पर जारी रहती है।",
+        "steps": [
+          "Settings और Billing खोलें",
+          "Manage subscription चुनें",
+          "Cancel subscription चुनें",
+          "प्रभावी तारीख देखकर पुष्टि करें"
+        ]
+      }
+    }
+  },
+  {
+    "title": "Change subscription seats",
+    "category": "Subscriptions",
+    "keywords": [
+      "seats",
+      "users",
+      "licenses",
+      "subscription",
+      "members",
+      "limit"
+    ],
+    "content": "Billing admins can change the number of subscription seats from Settings, then Billing, then Manage subscription. Adding seats is usually available immediately. Removing seats may require deactivating members first and normally affects the next renewal; review the price preview before confirming.",
+    "steps": [
+      "Open Billing and Manage subscription",
+      "Choose the seat quantity",
+      "Review the price preview",
+      "Confirm the change"
+    ],
+    "translations": {
+      "te-IN": {
+        "content": "బిల్లింగ్ అడ్మిన్‌లు Settings తర్వాత Billing లో Manage subscription ద్వారా సీట్ల సంఖ్య మార్చవచ్చు. సీట్లు పెంచడం సాధారణంగా వెంటనే అందుబాటులో ఉంటుంది. తగ్గించే ముందు సభ్యులను డీయాక్టివేట్ చేయాల్సి రావచ్చు.",
+        "steps": [
+          "Billing మరియు Manage subscription తెరవండి",
+          "సీట్ల సంఖ్య ఎంచుకోండి",
+          "ధర ప్రివ్యూ చూడండి",
+          "మార్పును నిర్ధారించండి"
+        ]
+      },
+      "hi-IN": {
+        "content": "बिलिंग एडमिन Settings में Billing और Manage subscription से सीटों की संख्या बदल सकते हैं। सीट जोड़ना आमतौर पर तुरंत उपलब्ध होता है। सीटें घटाने से पहले सदस्यों को निष्क्रिय करना पड़ सकता है।",
+        "steps": [
+          "Billing और Manage subscription खोलें",
+          "सीटों की संख्या चुनें",
+          "कीमत का पूर्वावलोकन देखें",
+          "बदलाव की पुष्टि करें"
+        ]
+      }
+    }
+  },
+  {
+    "title": "Check service status during an outage",
+    "category": "Outages",
+    "keywords": [
+      "outage",
+      "down",
+      "incident",
+      "status",
+      "unavailable",
+      "service",
+      "offline"
+    ],
+    "content": "If the service appears unavailable, first check the public status page and look for an active incident. If there is no incident, try a private browser window, confirm your network, and retry after a few minutes. Do not repeatedly submit forms during an outage. Include the timestamp, workspace, and error message when contacting support.",
+    "steps": [
+      "Check the public status page",
+      "Confirm your network connection",
+      "Retry in a private browser window",
+      "Send the timestamp and error message to support"
+    ],
+    "translations": {
+      "te-IN": {
+        "content": "సేవ అందుబాటులో లేకపోతే ముందుగా పబ్లిక్ స్టేటస్ పేజీలో యాక్టివ్ ఇన్సిడెంట్ ఉందో చూడండి. లేకపోతే నెట్‌వర్క్ తనిఖీ చేసి ప్రైవేట్ విండోలో కొన్ని నిమిషాల తర్వాత మళ్లీ ప్రయత్నించండి. సపోర్ట్‌కు సమయం మరియు ఎర్రర్ సందేశం పంపండి.",
+        "steps": [
+          "పబ్లిక్ స్టేటస్ పేజీ చూడండి",
+          "నెట్‌వర్క్ కనెక్షన్ నిర్ధారించండి",
+          "ప్రైవేట్ బ్రౌజర్ విండోలో ప్రయత్నించండి",
+          "సమయం మరియు ఎర్రర్ సందేశం సపోర్ట్‌కు పంపండి"
+        ]
+      },
+      "hi-IN": {
+        "content": "सेवा उपलब्ध न होने पर पहले सार्वजनिक स्टेटस पेज पर सक्रिय घटना देखें। घटना न हो तो नेटवर्क जांचें और कुछ मिनट बाद निजी ब्राउज़र विंडो में फिर प्रयास करें। सपोर्ट को समय और त्रुटि संदेश भेजें।",
+        "steps": [
+          "सार्वजनिक स्टेटस पेज देखें",
+          "नेटवर्क कनेक्शन जांचें",
+          "निजी ब्राउज़र विंडो में प्रयास करें",
+          "समय और त्रुटि संदेश सपोर्ट को भेजें"
+        ]
+      }
+    }
+  },
+  {
+    "title": "Change the account email address",
+    "category": "Account management",
+    "keywords": [
+      "change",
+      "email",
+      "address",
+      "profile",
+      "account",
+      "work email"
+    ],
+    "content": "To change the email address on your account, open Settings, then Profile, and choose Change email. Enter the new work email and confirm it from the verification message. If you no longer have access to the old email, ask a workspace admin to start an account-recovery review.",
+    "steps": [
+      "Open Settings and Profile",
+      "Choose Change email",
+      "Enter the new work email",
+      "Confirm the verification message"
+    ],
+    "translations": {
+      "te-IN": {
+        "content": "ఖాతా ఇమెయిల్ మార్చడానికి Settings తర్వాత Profile లో Change email ఎంచుకోండి. కొత్త వర్క్ ఇమెయిల్ నమోదు చేసి వెరిఫికేషన్ సందేశం ద్వారా నిర్ధారించండి. పాత ఇమెయిల్ యాక్సెస్ లేకపోతే వర్క్‌స్పేస్ అడ్మిన్‌ను సంప్రదించండి.",
+        "steps": [
+          "Settings మరియు Profile తెరవండి",
+          "Change email ఎంచుకోండి",
+          "కొత్త వర్క్ ఇమెయిల్ నమోదు చేయండి",
+          "వెరిఫికేషన్ సందేశాన్ని నిర్ధారించండి"
+        ]
+      },
+      "hi-IN": {
+        "content": "खाते का ईमेल बदलने के लिए Settings में Profile खोलें और Change email चुनें। नया कार्य ईमेल डालकर सत्यापन संदेश से पुष्टि करें। पुराने ईमेल तक पहुंच न हो तो वर्कस्पेस एडमिन से रिकवरी समीक्षा शुरू करने को कहें।",
+        "steps": [
+          "Settings और Profile खोलें",
+          "Change email चुनें",
+          "नया कार्य ईमेल डालें",
+          "सत्यापन संदेश की पुष्टि करें"
+        ]
+      }
+    }
+  },
+  {
+    "title": "Delete a workspace",
+    "category": "Account management",
+    "keywords": [
+      "delete",
+      "workspace",
+      "close",
+      "remove",
+      "permanently",
+      "account"
+    ],
+    "content": "Only a workspace owner can delete a workspace. Before deletion, export any required data and cancel active subscriptions. Open Settings, then General, choose Delete workspace, type the workspace name, and confirm. Deletion is permanent and cannot be undone by support.",
+    "steps": [
+      "Export required workspace data",
+      "Cancel active subscriptions",
+      "Open Settings and General",
+      "Choose Delete workspace and confirm"
+    ],
+    "translations": {
+      "te-IN": {
+        "content": "వర్క్‌స్పేస్ ఓనర్ మాత్రమే వర్క్‌స్పేస్ తొలగించగలరు. ముందుగా అవసరమైన డేటా ఎగుమతి చేసి యాక్టివ్ సబ్‌స్క్రిప్షన్‌లను రద్దు చేయండి. Settings తర్వాత General లో Delete workspace ఎంచుకుని వర్క్‌స్పేస్ పేరు నమోదు చేసి నిర్ధారించండి.",
+        "steps": [
+          "అవసరమైన వర్క్‌స్పేస్ డేటా ఎగుమతి చేయండి",
+          "యాక్టివ్ సబ్‌స్క్రిప్షన్‌లు రద్దు చేయండి",
+          "Settings మరియు General తెరవండి",
+          "Delete workspace ఎంచుకుని నిర్ధారించండి"
+        ]
+      },
+      "hi-IN": {
+        "content": "केवल वर्कस्पेस ओनर ही वर्कस्पेस हटा सकता है। पहले जरूरी डेटा एक्सपोर्ट करें और सक्रिय सब्सक्रिप्शन रद्द करें। Settings में General खोलकर Delete workspace चुनें, वर्कस्पेस का नाम डालें और पुष्टि करें।",
+        "steps": [
+          "जरूरी वर्कस्पेस डेटा एक्सपोर्ट करें",
+          "सक्रिय सब्सक्रिप्शन रद्द करें",
+          "Settings और General खोलें",
+          "Delete workspace चुनकर पुष्टि करें"
+        ]
+      }
     }
   }
 ]
