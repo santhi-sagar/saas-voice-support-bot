@@ -156,7 +156,14 @@ def init_db() -> None:
         if KNOWLEDGE_PATH.exists():
             for article in json.loads(KNOWLEDGE_PATH.read_text(encoding="utf-8")):
                 current = con.execute("SELECT * FROM articles WHERE title = ?", (article["title"],)).fetchone()
-                if current and (not current["translations"] or current["translations"] == "{}"):
+                if not current:
+                    article_id = str(uuid.uuid4())
+                    created = now()
+                    translations = article.get("translations", {})
+                    con.execute("INSERT INTO articles (id,title,category,keywords,content,steps,created_at,translations,version,status,change_note,reviewed_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", (article_id, article["title"], article["category"], json.dumps(article["keywords"]), article["content"], json.dumps(article.get("steps", [])), created, json.dumps(translations, ensure_ascii=False), 1, "approved", "Seeded approved support guide", created))
+                    con.execute("INSERT INTO article_versions (id,article_id,version,title,category,keywords,content,steps,translations,status,change_note,created_at,reviewed_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", (str(uuid.uuid4()), article_id, 1, article["title"], article["category"], json.dumps(article["keywords"]), article["content"], json.dumps(article.get("steps", [])), json.dumps(translations, ensure_ascii=False), "approved", "Seeded approved support guide", created, created))
+                    continue
+                if not current["translations"] or current["translations"] == "{}":
                     translations = json.dumps(article.get("translations", {}), ensure_ascii=False)
                     con.execute("UPDATE articles SET translations=? WHERE id=?", (translations, current["id"]))
                     version_exists = con.execute("SELECT COUNT(*) AS n FROM article_versions WHERE article_id=?", (current["id"],)).fetchone()["n"]
@@ -173,6 +180,7 @@ STOPWORDS = {
     "the", "and", "for", "how", "what", "can", "could", "would", "you", "your",
     "my", "from", "this", "that", "with", "need", "want", "please", "help", "tell",
     "about", "does", "where", "when", "yesterday", "today", "there", "have", "has",
+    "is", "are", "was", "were", "did", "why", "do", "right", "now",
 }
 
 
