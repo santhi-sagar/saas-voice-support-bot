@@ -406,6 +406,9 @@ def metrics(request: Request) -> dict[str, Any]:
     return {"conversations": conversations, "handoffs": handoffs, "average_rating": round(avg, 2) if avg else None, "articles": articles_count, "pending_review": pending, "versions": versions, "answer_threshold": ANSWER_THRESHOLD}
 
 
+from phone import router as voice_router
+app.include_router(voice_router)
+
 app.mount("/static", StaticFiles(directory=str(BASE / "static")), name="static")
 
 
