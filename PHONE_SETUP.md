@@ -1,13 +1,13 @@
-# Voxera inbound phone support — FlowDesk demo
+# Voxera inbound phone support — Kapture CX website-guide demo
 
-FlowDesk is a fictional SaaS product. The existing approved SaaS support articles form its demo knowledge base; these are not policies of any real company. This implementation uses grounded local retrieval, not a generative LLM or a streaming real-time speech model.
+Voxera is an independent Kapture CX website guide, not an official Kapture service. Reviewed official website pages form its knowledge pack. See KAPTURE_GUIDE.md. This implementation uses grounded local retrieval, not a generative LLM or a streaming real-time speech model.
 
 ## What works in the implementation
 
 - Inbound Twilio HTTPS webhook with provider signature and account validation.
 - Turn-by-turn English (India) speech recognition and text-to-speech.
-- Keypad 1: sign-in; 2: invoices; 3: cancellation; 9: human-support information; 0: hang up.
-- Explicit AI and fictional-product disclosure. No audio recording by this application.
+- Keypad 1: job applications; 2: contact; 3: demo; 4: products; 9: official support information; 0: hang up.
+- Explicit AI and non-affiliation disclosure. No audio recording by this application.
 - Approved-article answers, unsupported-question fallback, no fabricated account access or live transfer.
 - Two empty responses end the call; 12 turns cap the demo flow.
 - Phone conversation transcripts and caller numbers are not saved by this implementation. Twilio may retain provider call metadata under its own settings.
@@ -35,7 +35,7 @@ Do not buy or provision a number, upgrade billing, or place an outbound test cal
 
 uv run --no-project --with fastapi==0.115.6 --with httpx python test_phone.py
 
-The 10 regression tests cover intro, health, keypad, hangup, no fake transfer, silence/turn limits, invalid signatures/accounts, and XML escaping. Tests use fake credentials only.
+The 13 regression tests cover intro, health, keypad, hangup, no fake transfer, silence/turn limits, invalid signatures/accounts, and XML escaping. Tests use fake credentials only.
 
 ## Required live acceptance
 
@@ -45,4 +45,4 @@ The 10 regression tests cover intro, health, keypad, hangup, no fake transfer, s
 4. The owner calls the number and verifies greeting, a supported question, an unsupported question, keypad controls, silence timeout, and hangup.
 5. Mark caller-ready only after a successful real call.
 
-Render free-tier cold starts can delay inbound webhooks. This is a trial/demo, not a guaranteed always-on production line. English phone support only in this version; the existing browser supports English, Telugu, and Hindi. Live human transfer, generative LLM conversation, durable call analytics, and authenticated account actions are not implemented.
+Render free-tier cold starts can delay inbound webhooks. This is a trial/demo, not a guaranteed always-on production line. English phone support only in this version; the reviewed browser guide also uses English only. Live human transfer, generative LLM conversation, durable call analytics, and authenticated account actions are not implemented.
