@@ -11,7 +11,7 @@ from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import Response
 
 router = APIRouter(prefix="/api/voice")
-PRODUCT = "FlowDesk"
+PRODUCT = "Kapture CX website guide"
 
 
 def configured():
@@ -63,14 +63,14 @@ def gather(root, prompt, turn=0, empty=0):
 @router.get("/readiness")
 def readiness():
     base, token, sid = configured()
-    return {"configured": bool(base.startswith("https://") and token and sid), "product": PRODUCT, "demo": True, "recording": False, "mode": "turn-based speech and keypad", "language": "en-IN", "number_activation_verified": False}
+    return {"configured": bool(base.startswith("https://") and token and sid), "product": PRODUCT, "demo": True, "affiliated_with_kapture": False, "recording": False, "mode": "turn-based speech and keypad", "language": "en-IN", "number_activation_verified": False}
 
 
 @router.post("/incoming")
 async def incoming(request: Request):
     await verified_form(request)
     root = Element("Response")
-    gather(root, "Hello. I am Voxera, an AI assistant for FlowDesk, a fictional software product demo. This is not an official company support line. Your speech is processed to answer your question. Do not share passwords, card details, or private account information. Calls are not recorded by this app. Ask a product support question, press 1 for sign-in help, 2 for invoices, 3 for cancellation, 9 for human support information, or 0 to end.")
+    gather(root, "Hello. I am Voxera, an independent AI website guide for Kapture C X. I am not affiliated with Kapture and this is not its official company phone line. Your speech is processed to answer your question. Do not share passwords, card details, or private account information. Calls are not recorded by this app. Ask about Kapture or its website. Press 1 for job applications, 2 to contact Kapture, 3 to request a demo, 4 for products, 9 for official support information, or 0 to end.")
     return xml_response(root)
 
 
@@ -86,27 +86,27 @@ async def turn(request: Request):
     digit = form.get("Digits", "")
     speech = form.get("SpeechResult", "").strip()[:2000]
     if digit == "0" or speech.lower() in {"goodbye", "bye", "end call", "hang up"}:
-        say(root, "Thank you for trying FlowDesk support. Goodbye.")
+        say(root, "Thank you for trying the Kapture website guide. Goodbye.")
         SubElement(root, "Hangup")
     elif number >= 12:
         say(root, "This demo has reached its call limit. Please use the browser support page for more help. Goodbye.")
         SubElement(root, "Hangup")
     elif digit == "9" or re.search(r"\b(human|agent|specialist|representative)\b", speech, re.I):
-        gather(root, "This demo has no live human agent connected. You can use the browser support form to leave a demo request. No callback is promised. Ask another question, or press 0 to end.", number + 1)
+        gather(root, "This demo has no live human agent connected. Visit Kapture dot c x slash contact for official contact details, or slash support for customer help. No callback is promised. Ask another question, or press 0 to end.", number + 1)
     elif not digit and not speech:
         if empty >= 1:
             say(root, "I did not hear a response. Please call again when you are ready. Goodbye.")
             SubElement(root, "Hangup")
         else:
-            gather(root, "I did not hear you. Please ask your question or press 1 for sign-in help, 2 for invoices, 3 for cancellation, or 0 to end.", number, empty + 1)
+            gather(root, "I did not hear you. Please ask your question or press 1 for jobs, 2 for contact details, 3 for demos, 4 for products, or 0 to end.", number, empty + 1)
     else:
-        questions = {"1": "reset password sign in", "2": "download billing invoice", "3": "cancel subscription cancellation"}
+        questions = {"1": "apply jobs careers", "2": "contact Kapture email", "3": "request demo", "4": "products AgentOS"}
         if digit and digit not in questions:
             answer = "That keypad option is not available."
         else:
             from app import response_for
             answer, confidence, source, citation = response_for(questions.get(digit, speech), "en-IN")
             if source == "safe_fallback":
-                answer = "I could not verify an answer in the approved product guide. This demo cannot access your account or transfer you to a live agent. Please use the browser support page."
+                answer = "I could not verify an answer in the reviewed official website guide. This demo cannot access your account or transfer you to a live agent. Please check the official Kapture website."
         gather(root, answer + " You can ask another question, press 9 for human support information, or press 0 to end.", number + 1)
     return xml_response(root)
