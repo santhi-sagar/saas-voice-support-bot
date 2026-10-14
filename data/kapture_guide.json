@@ -1,0 +1,156 @@
+[
+  {
+    "title": "About Kapture CX",
+    "pattern": "\\b(about|company|kapture|overview|what.*do|who.*are)\\b",
+    "keywords": [
+      "company",
+      "kapture",
+      "overview",
+      "about"
+    ],
+    "content": "Kapture CX describes itself as an AI-powered customer experience platform. Its website presents AgentOS as a platform bringing AI agents and human intelligence together across enterprise workflows. To learn about the company, open kapture dot c x, choose Company, then About Us. Voxera is an independent website guide, not Kapture's official representative.",
+    "url": "https://www.kapture.cx/about-us/"
+  },
+  {
+    "title": "Apply for jobs at Kapture CX",
+    "pattern": "\\b(apply|application|job|jobs|career|careers|hiring|resume|recruitment|internship|vacancy|vacancies)\\b",
+    "keywords": [
+      "apply",
+      "job",
+      "careers",
+      "hiring",
+      "resume"
+    ],
+    "content": "For job applications, open Kapture's official website, choose Company, then Careers. Review the listed roles and use Load More if available. Select the role that fits your skills and follow its application link to Kapture's Keka careers portal. Read that role's requirements and use its application control; the exact fields and whether applications are still open must be checked on the role page. Do not use the sales demo form to apply for a job. The Careers page lists work at kapture dot c x for careers queries. I cannot submit an application or confirm a vacancy for you.",
+    "url": "https://www.kapture.cx/careers/"
+  },
+  {
+    "title": "Kapture hiring process",
+    "pattern": "\\b(interview|hiring process|recruitment process|selection process|screening|offer letter)\\b",
+    "keywords": [
+      "interview",
+      "selection",
+      "screening"
+    ],
+    "content": "Kapture's Careers page describes online application review, a screening call with a talent acquisition specialist, a technical interview, a leadership discussion, document collection for shortlisted candidates, and a final offer after internal alignment. These are the published stages, not a guarantee for every role. Timelines, eligibility, salaries, and virtual-only hiring must be confirmed with Kapture.",
+    "url": "https://www.kapture.cx/careers/"
+  },
+  {
+    "title": "Contact Kapture CX",
+    "pattern": "\\b(contact|email|enquiries|sales|phone number|call them|talk to|human|agent|representative)\\b",
+    "keywords": [
+      "contact",
+      "email",
+      "sales",
+      "human"
+    ],
+    "content": "To contact Kapture, open its official website, choose Company, then Contact Us. The page lists enquiries at kapture dot c x for general enquiries. For careers use the careers page and its listed work at kapture dot c x email. For product help use the official Support page. Phone-number formatting differs across the pages I checked, so verify the number directly on Contact Us before dialing. This demo cannot connect you to a Kapture employee or promise a callback.",
+    "url": "https://www.kapture.cx/contact/"
+  },
+  {
+    "title": "Request a Kapture demo",
+    "pattern": "\\b(demo|book|booking|appointment|get started|sign up|signup|trial)\\b",
+    "keywords": [
+      "demo",
+      "booking",
+      "trial"
+    ],
+    "content": "Choose Personalized Demo on Kapture's website, or open kapture dot c x slash demo. The form asks for Full Name, Work Email, Phone with a country selector, and Company. Review the privacy consent and submit using Get Started if you agree. The demo page offers a live AgentOS demonstration, use-case discussion, and custom quote advice. I cannot promise a free trial, instant account, meeting time, or approval, and I will not submit your details.",
+    "url": "https://www.kapture.cx/demo/"
+  },
+  {
+    "title": "Kapture products and AgentOS",
+    "pattern": "\\b(product|products|agentos|agent os|vitos|command|calibrate|pulse|features|services)\\b",
+    "keywords": [
+      "products",
+      "agentos",
+      "vitos",
+      "command",
+      "calibrate",
+      "pulse"
+    ],
+    "content": "Under Products, Kapture presents AgentOS and four layers: VITOS, an agent builder for building, testing, and deploying AI agents; COMMAND, a human layer for defining where humans step into workflows; CALIBRATE, an audit layer for evaluating interactions; and PULSE, an intelligence layer for querying and acting on operational data. Open the relevant product page for details and request a demo to verify suitability for your use case.",
+    "url": "https://www.kapture.cx/"
+  },
+  {
+    "title": "Kapture pricing and quotes",
+    "pattern": "\\b(price|pricing|cost|quote|subscription|plan|plans|refund|cancellation)\\b",
+    "keywords": [
+      "pricing",
+      "cost",
+      "quote",
+      "refund"
+    ],
+    "content": "Open Kapture's Pricing page for its published pricing approach. It describes modular pricing based on products, users, interaction volumes, and AI features, with agent-based, interaction-based, or hybrid options. Request a custom quote or a demo for an actual price. I do not have a verified fixed price for your company, and cannot approve a refund, cancellation, or contract change. Confirm commercial terms directly with Kapture.",
+    "url": "https://www.kapture.cx/pricing/"
+  },
+  {
+    "title": "Existing customer support and login",
+    "pattern": "\\b(support|login|log in|sign in|password|account|ticket|issue|problem|helpdesk|troubleshoot)\\b",
+    "keywords": [
+      "support",
+      "login",
+      "password",
+      "ticket"
+    ],
+    "content": "For existing-customer help, open Kapture's official Support page. Its form includes first and last name, email, phone, company, remarks, and privacy consent, with a Submit Request action. Use your organisation's authorised Kapture login link or ask your administrator; I have not verified a universal login URL. Never share passwords, OTPs, API keys, or customer records with this demo. I cannot access your account, reset your password, or check a ticket.",
+    "url": "https://www.kapture.cx/support/"
+  },
+  {
+    "title": "Kapture office location",
+    "pattern": "\\b(address|office|location|located|bangalore|bengaluru|headquarters|head office)\\b",
+    "keywords": [
+      "office",
+      "location",
+      "bengaluru",
+      "address"
+    ],
+    "content": "Kapture's official Contact page lists its Bangalore head office at B-9, 11th Floor Brigade Summit, ITPL Main Road, Brigade Metropolis, Garudachar Palya, Mahadevapura, Bengaluru, Karnataka 560048. It also lists offices in the USA, Mumbai, Gurugram, and the UAE. Check the current Contact page and confirm appointment or visitor instructions with the company before travelling.",
+    "url": "https://www.kapture.cx/contact/"
+  },
+  {
+    "title": "Website navigation",
+    "pattern": "\\b(website|navigate|navigation|menu|where to|how to use|find page|browse)\\b",
+    "keywords": [
+      "website",
+      "navigation",
+      "menu"
+    ],
+    "content": "Start at www dot kapture dot c x. Use Products for platform and product details, Solutions for industry use cases, Pricing for the commercial approach, Resources for blogs, case studies, integrations, and API documentation, and Company for About Us, Careers, Partners, Contact Us, and Trust Center. Personalized Demo takes you to the enquiry form. For jobs, go to Careers rather than the demo form. Menu layout may vary on mobile.",
+    "url": "https://www.kapture.cx/"
+  },
+  {
+    "title": "Kapture integrations and developer documentation",
+    "pattern": "\\b(integration|integrations|api|developer|documentation|crm|erp|twilio|salesforce|hubspot)\\b",
+    "keywords": [
+      "integrations",
+      "api",
+      "developer"
+    ],
+    "content": "Open Resources, then Integrations to explore Kapture's integration categories, including CRM, calling, WhatsApp, social media, ecommerce, logistics, payments, and ERP. The official website links to developer documentation at dev dot kapture dot c x slash kapture dash api. Availability and configuration depend on your deployment; confirm with Kapture before promising an integration. Never share API secrets with this demo.",
+    "url": "https://www.kapture.cx/integrations/"
+  },
+  {
+    "title": "Kapture partnerships",
+    "pattern": "\\b(partner|partners|partnership|reseller|resell|consulting)\\b",
+    "keywords": [
+      "partner",
+      "partnership",
+      "reseller"
+    ],
+    "content": "Choose Company, then Partners on Kapture's website. The partner page describes Business Transformation, Consulting and Advisory, and Technology-First partnerships. Review the programme and use the official enquiry route to discuss eligibility. I cannot approve partner status, promise commission, or confirm commercial terms.",
+    "url": "https://www.kapture.cx/partner/"
+  },
+  {
+    "title": "Kapture trust, security, and privacy",
+    "pattern": "\\b(security|secure|privacy|trust|compliance|gdpr|soc|iso|data protection|safe)\\b",
+    "keywords": [
+      "security",
+      "privacy",
+      "trust",
+      "compliance"
+    ],
+    "content": "Choose Company, then Trust Center to read Kapture's published security, compliance, and responsible-AI information. These are company statements, not an independent security assessment by Voxera. Review the applicable documentation and ask Kapture for evidence relevant to your requirements. Read its Privacy Policy before entering personal details in a form. Do not assume every certification or claim applies to every product or deployment.",
+    "url": "https://www.kapture.cx/trust-center/"
+  }
+]
