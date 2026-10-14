@@ -50,7 +50,7 @@ def require_access(request: Request) -> None:
         raise HTTPException(status_code=401, detail="Valid Voxera access code required")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 
-SUPPORTED_LANGUAGES = {"en-IN": "English", "te-IN": "Telugu", "hi-IN": "Hindi"}
+SUPPORTED_LANGUAGES = {"en-IN": "English"}
 TRANSLATIONS = {
     "en-IN": {
         "greeting": "Hello. I am Voxera, your support assistant. How can I help?",
@@ -213,21 +213,9 @@ def retrieve(message: str) -> tuple[sqlite3.Row | None, float]:
 ANSWER_THRESHOLD = 0.65
 
 
-def response_for(message: str, language: str) -> tuple[str, float, str, dict[str, Any] | None]:
-    language = language if language in SUPPORTED_LANGUAGES else "en-IN"
-    article, confidence = retrieve(message)
-    if article and confidence >= ANSWER_THRESHOLD:
-        translations = json.loads(article["translations"] or "{}")
-        localized = translations.get(language, {})
-        intro = {
-            "en-IN": "Here is what I found:",
-            "te-IN": "ఇది నాకు దొరికిన సమాచారం:",
-            "hi-IN": "मुझे यह जानकारी मिली:",
-        }[language]
-        answer = f"{intro} {localized.get('content', article['content'])}"
-        steps = localized.get("steps", json.loads(article["steps"]))
-        return answer, confidence, "knowledge_base", {"title": article["title"], "category": article["category"], "steps": steps, "version": article["version"], "reviewed_at": article["reviewed_at"]}
-    return TRANSLATIONS[language]["fallback"], confidence, "safe_fallback", {"threshold": ANSWER_THRESHOLD, "reason": "No approved article met the confidence threshold"}
+def response_for(message: str, language: str):
+    from kapture import answer
+    return answer(message, language)
 
 
 @app.on_event("startup")
@@ -262,7 +250,8 @@ def auth_status(request: Request) -> dict[str, str]:
 @app.get("/api/greeting")
 def greeting(language: str = "en-IN") -> dict[str, str]:
     language = language if language in SUPPORTED_LANGUAGES else "en-IN"
-    return {"message": TRANSLATIONS[language]["greeting"], "language": language}
+    from kapture import GREETING
+    return {"message": GREETING, "language": "en-IN"}
 
 
 @app.post("/api/chat")
@@ -274,7 +263,7 @@ def chat(payload: ChatRequest, request: Request) -> dict[str, Any]:
     with db() as con:
         con.execute(
             "INSERT INTO conversations VALUES (?, ?, ?, ?, ?, ?, ?)",
-            (conversation_id, mask_pii(payload.message), mask_pii(answer), language, confidence, source, now()),
+            (str(uuid.uuid4()), mask_pii(payload.message), mask_pii(answer), language, confidence, source, now()),
         )
     return {
         "conversation_id": conversation_id,
