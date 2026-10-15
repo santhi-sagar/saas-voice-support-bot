@@ -70,5 +70,23 @@ class GuideTests(unittest.TestCase):
         from app import response_for
         self.assertNotIn('Here is what I found',response_for('reset password sign in','en-IN')[0])
         self.assertIn('cannot access',response_for('reset password sign in','en-IN')[0])
+    def test_hindi_kapture_responses(self):
+        from kapture import answer, GREETING_HI
+        result=answer('How do I apply at Kapture CX?','hi-IN')
+        self.assertEqual(result[2],'knowledge_base')
+        self.assertRegex(result[0],r'[\u0900-\u097F]')
+        self.assertRegex(GREETING_HI,r'[\u0900-\u097F]')
+    def test_hr_simulation_local_and_bilingual(self):
+        from pathlib import Path
+        html=(Path(__file__).parent/'static/index.html').read_text(encoding='utf-8')
+        script=(Path(__file__).parent/'static/hr-simulation.js').read_text(encoding='utf-8')
+        self.assertIn('hr-simulation.js',html)
+        self.assertIn("'hi-IN'",script)
+        self.assertIn('Nothing is sent to Voxera',script)
+        self.assertNotIn('fetch(',script)
+        self.assertIn('does not check a calendar or book a slot',script)
+    def test_outbound_hr_calls_disabled(self):
+        from phone import readiness
+        self.assertFalse(readiness()['outbound_hr_calls_enabled'])
 
 if __name__=='__main__': unittest.main(verbosity=2)
