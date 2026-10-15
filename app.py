@@ -50,7 +50,7 @@ def require_access(request: Request) -> None:
         raise HTTPException(status_code=401, detail="Valid Voxera access code required")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 
-SUPPORTED_LANGUAGES = {"en-IN": "English"}
+SUPPORTED_LANGUAGES = {"en-IN": "English", "hi-IN": "Hindi"}
 TRANSLATIONS = {
     "en-IN": {
         "greeting": "Hello. I am Voxera, your support assistant. How can I help?",
@@ -250,8 +250,8 @@ def auth_status(request: Request) -> dict[str, str]:
 @app.get("/api/greeting")
 def greeting(language: str = "en-IN") -> dict[str, str]:
     language = language if language in SUPPORTED_LANGUAGES else "en-IN"
-    from kapture import GREETING
-    return {"message": GREETING, "language": "en-IN"}
+    from kapture import GREETING, GREETING_HI
+    return {"message": GREETING_HI if language == "hi-IN" else GREETING, "language": language}
 
 
 @app.post("/api/chat")
