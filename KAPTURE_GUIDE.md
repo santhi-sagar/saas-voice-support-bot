@@ -25,7 +25,9 @@ This is a bounded review of main website routes, not every website page. Claims 
 The versioned reviewed JSON pack in data/kapture_guide.json is the sole website-answer source. Legacy SaaS SQLite articles remain preserved but are excluded from customer answers. Existing legacy admin editing does not update this guide. To update the guide, verify official pages, revise the JSON and tests, and publish the reviewed version. Each answer includes its official source URL and review date. Topic match scores are routing scores, not calibrated accuracy probabilities. Unverified questions use safe fallback.
 
 ## Phone controls
-1: careers/applications; 2: contact; 3: demo; 4: products; 9: official support information; 0: hangup. No live transfer, outbound calls, audio recording, or persisted phone transcripts. Twilio may retain its own call metadata.
+Choose 1 for English or 2 for Hindi. Then 1: careers/applications; 2: contact; 3: demo; 4: products; 9: official support information; 0: hangup. No live transfer, outbound calls, audio recording, or persisted phone transcripts. Twilio may retain its own call metadata.
+
+A separate browser-only HR interview-practice simulation supports English and Hindi and requests synthetic answers. It is not a Kapture HR service and does not contact candidates, save answers, check calendars, book slots, score applicants, or make hiring decisions. See HR_SIMULATION.md.
 
 ## Deployment and testing
 See PHONE_SETUP.md for secure environment settings, signature validation, number configuration, and live acceptance checklist. Tests: uv run --no-project --with fastapi==0.115.6 --with httpx python test_phone.py. 13 tests passed, including a 12-question topic matrix, unsupported requests, exclusion of old SaaS answers, and inbound webhook flows. JavaScript syntax checked with node --check static/app.js.
