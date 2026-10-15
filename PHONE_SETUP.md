@@ -5,8 +5,9 @@ Voxera is an independent Kapture CX website guide, not an official Kapture servi
 ## What works in the implementation
 
 - Inbound Twilio HTTPS webhook with provider signature and account validation.
-- Turn-by-turn English (India) speech recognition and text-to-speech.
-- Keypad 1: job applications; 2: contact; 3: demo; 4: products; 9: official support information; 0: hang up.
+- Caller-selected Hindi or English turn-by-turn speech recognition and text-to-speech, with keypad navigation.
+- Initial language menu: 1 English, 2 Hindi. Then 1: job applications; 2: contact; 3: demo; 4: products; 9: official support information; 0: hang up.
+- FAQ-only inbound call handling. No outbound candidate dialing, calendar integration, candidate profile capture, or interview booking. The browser HR practice simulation is not the phone FAQ and uses synthetic information only.
 - Explicit AI and non-affiliation disclosure. No audio recording by this application.
 - Approved-article answers, unsupported-question fallback, no fabricated account access or live transfer.
 - Two empty responses end the call; 12 turns cap the demo flow.
